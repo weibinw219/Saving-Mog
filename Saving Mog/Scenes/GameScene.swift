@@ -43,6 +43,11 @@ class GameScene: SKScene {
                                               SKAction.fadeOut(withDuration: 0.5),
                                               SKAction.removeFromParent()]))
         }
+        
+        sportNode = SKSpriteNode(imageNamed: "cloud.png")
+        sportNode?.position = CGPoint(x: 100, y: 100)
+        addChild(sportNode!)
+        
     }
     
     
