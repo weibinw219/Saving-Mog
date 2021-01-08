@@ -14,6 +14,11 @@
 		E4BFE2D525A7E63100AE3BCB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BFE2D425A7E63100AE3BCB /* GameViewController.swift */; };
 		E4BFE2D825A7E63100AE3BCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4BFE2D625A7E63100AE3BCB /* Main.storyboard */; };
 		E4BFE2DA25A7E63400AE3BCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4BFE2D925A7E63400AE3BCB /* Assets.xcassets */; };
+		E4BFE2EC25A7E6D800AE3BCB /* titleBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E4BFE2E725A7E6D700AE3BCB /* titleBG.jpg */; };
+		E4BFE2ED25A7E6D800AE3BCB /* mog.png in Resources */ = {isa = PBXBuildFile; fileRef = E4BFE2E825A7E6D700AE3BCB /* mog.png */; };
+		E4BFE2EE25A7E6D800AE3BCB /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = E4BFE2E925A7E6D700AE3BCB /* cloud.png */; };
+		E4BFE2EF25A7E6D800AE3BCB /* ff.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E4BFE2EA25A7E6D800AE3BCB /* ff.jpg */; };
+		E4BFE2F025A7E6D800AE3BCB /* cactuar.png in Resources */ = {isa = PBXBuildFile; fileRef = E4BFE2EB25A7E6D800AE3BCB /* cactuar.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,12 @@
 		E4BFE2D725A7E63100AE3BCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E4BFE2D925A7E63400AE3BCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4BFE2DB25A7E63400AE3BCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4BFE2E725A7E6D700AE3BCB /* titleBG.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = titleBG.jpg; sourceTree = "<group>"; };
+		E4BFE2E825A7E6D700AE3BCB /* mog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mog.png; sourceTree = "<group>"; };
+		E4BFE2E925A7E6D700AE3BCB /* cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud.png; sourceTree = "<group>"; };
+		E4BFE2EA25A7E6D800AE3BCB /* ff.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ff.jpg; sourceTree = "<group>"; };
+		E4BFE2EB25A7E6D800AE3BCB /* cactuar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cactuar.png; sourceTree = "<group>"; };
+		E4BFE2F225A7E6E100AE3BCB /* Ferrum-wy99.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ferrum-wy99.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +69,9 @@
 		E4BFE2CB25A7E63100AE3BCB /* Saving Mog */ = {
 			isa = PBXGroup;
 			children = (
+				E4BFE2E625A7E6A400AE3BCB /* Fonts */,
+				E4BFE2E525A7E6A000AE3BCB /* Images */,
+				E4BFE2E325A7E68200AE3BCB /* ViewControllers */,
 				E4BFE2CC25A7E63100AE3BCB /* AppDelegate.swift */,
 				E4BFE2CE25A7E63100AE3BCB /* GameScene.sks */,
 				E4BFE2D025A7E63100AE3BCB /* Actions.sks */,
@@ -68,6 +82,33 @@
 				E4BFE2DB25A7E63400AE3BCB /* Info.plist */,
 			);
 			path = "Saving Mog";
+			sourceTree = "<group>";
+		};
+		E4BFE2E325A7E68200AE3BCB /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E4BFE2E525A7E6A000AE3BCB /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				E4BFE2EB25A7E6D800AE3BCB /* cactuar.png */,
+				E4BFE2E925A7E6D700AE3BCB /* cloud.png */,
+				E4BFE2EA25A7E6D800AE3BCB /* ff.jpg */,
+				E4BFE2E825A7E6D700AE3BCB /* mog.png */,
+				E4BFE2E725A7E6D700AE3BCB /* titleBG.jpg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		E4BFE2E625A7E6A400AE3BCB /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E4BFE2F225A7E6E100AE3BCB /* Ferrum-wy99.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,7 +169,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4BFE2D825A7E63100AE3BCB /* Main.storyboard in Resources */,
+				E4BFE2EF25A7E6D800AE3BCB /* ff.jpg in Resources */,
 				E4BFE2CF25A7E63100AE3BCB /* GameScene.sks in Resources */,
+				E4BFE2EE25A7E6D800AE3BCB /* cloud.png in Resources */,
+				E4BFE2EC25A7E6D800AE3BCB /* titleBG.jpg in Resources */,
+				E4BFE2ED25A7E6D800AE3BCB /* mog.png in Resources */,
+				E4BFE2F025A7E6D800AE3BCB /* cactuar.png in Resources */,
 				E4BFE2DA25A7E63400AE3BCB /* Assets.xcassets in Resources */,
 				E4BFE2D125A7E63100AE3BCB /* Actions.sks in Resources */,
 			);
