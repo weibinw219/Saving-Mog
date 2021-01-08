@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E44D073625A8366D00594316 /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E44D073525A8366D00594316 /* TitleScene.sks */; };
+		E44D073A25A841BA00594316 /* Ferrum-wy99.otf in Resources */ = {isa = PBXBuildFile; fileRef = E4BFE2F225A7E6E100AE3BCB /* Ferrum-wy99.otf */; };
 		E4BFE2CD25A7E63100AE3BCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BFE2CC25A7E63100AE3BCB /* AppDelegate.swift */; };
 		E4BFE2CF25A7E63100AE3BCB /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E4BFE2CE25A7E63100AE3BCB /* GameScene.sks */; };
 		E4BFE2D125A7E63100AE3BCB /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = E4BFE2D025A7E63100AE3BCB /* Actions.sks */; };
@@ -25,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E44D073525A8366D00594316 /* TitleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TitleScene.sks; sourceTree = "<group>"; };
 		E4BFE2C925A7E63100AE3BCB /* Saving Mog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Saving Mog.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4BFE2CC25A7E63100AE3BCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4BFE2CE25A7E63100AE3BCB /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -77,7 +80,7 @@
 			children = (
 				E4BFE2F425A7E71C00AE3BCB /* Scenes */,
 				E4BFE2F325A7E70B00AE3BCB /* Storyboards */,
-				E4BFE2E625A7E6A400AE3BCB /* Fonts */,
+				E4BFE2E625A7E6A400AE3BCB /* fonts */,
 				E4BFE2E525A7E6A000AE3BCB /* Images */,
 				E4BFE2E325A7E68200AE3BCB /* ViewControllers */,
 				E4BFE2CC25A7E63100AE3BCB /* AppDelegate.swift */,
@@ -107,12 +110,12 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		E4BFE2E625A7E6A400AE3BCB /* Fonts */ = {
+		E4BFE2E625A7E6A400AE3BCB /* fonts */ = {
 			isa = PBXGroup;
 			children = (
 				E4BFE2F225A7E6E100AE3BCB /* Ferrum-wy99.otf */,
 			);
-			path = Fonts;
+			path = fonts;
 			sourceTree = "<group>";
 		};
 		E4BFE2F325A7E70B00AE3BCB /* Storyboards */ = {
@@ -132,6 +135,7 @@
 				E4BFE2D225A7E63100AE3BCB /* GameScene.swift */,
 				E4BFE2FD25A82C7400AE3BCB /* GameResult.swift */,
 				E4BFE30025A82DC400AE3BCB /* TitleScene.swift */,
+				E44D073525A8366D00594316 /* TitleScene.sks */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -199,9 +203,11 @@
 				E4BFE2EE25A7E6D800AE3BCB /* cloud.png in Resources */,
 				E4BFE2EC25A7E6D800AE3BCB /* titleBG.jpg in Resources */,
 				E4BFE2ED25A7E6D800AE3BCB /* mog.png in Resources */,
+				E44D073A25A841BA00594316 /* Ferrum-wy99.otf in Resources */,
 				E4BFE2F025A7E6D800AE3BCB /* cactuar.png in Resources */,
 				E4BFE2DA25A7E63400AE3BCB /* Assets.xcassets in Resources */,
 				E4BFE2FA25A80A8800AE3BCB /* Launch Screen.storyboard in Resources */,
+				E44D073625A8366D00594316 /* TitleScene.sks in Resources */,
 				E4BFE2D125A7E63100AE3BCB /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

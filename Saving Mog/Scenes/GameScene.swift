@@ -20,6 +20,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
+    private var counterDown : SKLabelNode?
+    private var currentHighScore : SKLabelNode?
     private var background = SKSpriteNode(imageNamed: "ff.jpg")
     private var sportNode : SKSpriteNode?
     
@@ -35,10 +37,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         background.alpha = 0.2
         addChild(background)
         
+        self.counterDown = self.childNode(withName: "//countDownTimer") as? SKLabelNode
+        self.currentHighScore?.text = UserDefaults.standard.string(forKey: "highScore")!
         
+        func countdownAction() {
+            timeLeft -= 1
+            score = score!+1
+            self.lblScore?.text = "Score: \(score!)"
+            print(timeLeft)
+            self.counterDown?.text = "Time Left: \(timeLeft) s"
+            if let slabel1 = self.counterDown {
+                
+                slabel1.run(SKAction.scale(by: 4, duration: 0.4))
+                slabel1.run(SKAction.scale(by: 0.25, duration: 0.4))
+            }
+            if let slabel2 = self.lblScore {
+                
+                slabel2.run(SKAction.scale(by: 2, duration: 0.4))
+                slabel2.run(SKAction.scale(by: 0.5, duration: 0.4))
+            }
+        }
+        
+        func endCountdown() {
+            counterDown?.removeFromParent()
+        }
+        let counterDecrement = SKAction.sequence([SKAction.wait(forDuration: 1.0),SKAction.run(countdownAction)])
+        run(SKAction.sequence([SKAction.repeat(counterDecrement, count: 60), SKAction.run(endCountdown)]))
         
         // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
+        self.label = self.childNode(withName: "//lblTitle") as? SKLabelNode
         if let label = self.label {
             label.alpha = 0.0
             label.run(SKAction.fadeIn(withDuration: 2.0))
@@ -76,10 +103,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let runAddMog = SKAction.run(addMog)
         
         let repeatAddCactuar = SKAction.repeat(SKAction.sequence([runAddCactuar, SKAction.wait(forDuration: 0.5)]), count: counter)
+        let runCheckingTimer = SKAction.run(checkingTimer)
         
+        run(SKAction.repeatForever(SKAction.sequence([repeatAddCactuar, runAddMog, runCheckingTimer])))
+
+        score = 0
+        self.lblScore = self.childNode(withName: "//score") as? SKLabelNode
+        self.lblScore?.text = "Score: \(score!)"
         
-        run(SKAction.repeatForever(SKAction.sequence([repeatAddCactuar, runAddMog])))
-        
+    }
+    
+    func checkingTimer() {
+        if (timeLeft == 0)
+        {
+            gameResultScreen()
+        }
     }
     
     func random() -> CGFloat {
