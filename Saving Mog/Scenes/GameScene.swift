@@ -29,6 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let scoreIncrement = 10
     private var lblScore : SKLabelNode?
     var timeLeft : Int = 60
+    let currentHighScoreUD = UserDefaults.standard.string(forKey: "highScore")
     
     override func didMove(to view: SKView) {
         
@@ -38,7 +39,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(background)
         
         self.counterDown = self.childNode(withName: "//countDownTimer") as? SKLabelNode
-        self.currentHighScore?.text = UserDefaults.standard.string(forKey: "highScore")!
+        self.currentHighScore = self.childNode(withName: "//currentHighScorelbl") as? SKLabelNode
+        
+        if(currentHighScoreUD == nil) {
+            self.currentHighScore?.text = String(0)
+
+        }
+        else {
+            self.currentHighScore?.text = "Current High Score: \(currentHighScoreUD!)"
+
+        }
         
         func countdownAction() {
             timeLeft -= 1
@@ -200,13 +210,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         resultScene.addChild(resultScene.resultMsg)
         
         
-        if (score! > Int(UserDefaults.standard.string(forKey: "highScore")!)!)
-        {
-            
+ 
+        if ((currentHighScoreUD == nil) || (score! > Int(currentHighScoreUD!)!)) {
             rememberEnteredData()
             resultScene.addChild(resultScene.newHighScoreMsg)
+       
         }
-        resultScene.lblHighScore.text = "High score: \(UserDefaults.standard.string(forKey: "highScore")!)"
+        
+        
+        resultScene.lblHighScore.text = "High score: \(currentHighScoreUD!)"
         resultScene.addChild(resultScene.lblHighScore)
         self.view?.presentScene(resultScene, transition: reveal)
     }
