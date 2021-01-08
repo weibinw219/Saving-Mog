@@ -12,8 +12,17 @@ class GameScene: SKScene {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
+    private var background = SKSpriteNode(imageNamed: "ff.jpg")
+    private var sportNode : SKSpriteNode?
     
     override func didMove(to view: SKView) {
+        
+        background.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2)
+        background.scale(to: self.size.self)
+        background.alpha = 0.2
+        addChild(background)
+        
+        
         
         // Get label node from scene and store it for use later
         self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
