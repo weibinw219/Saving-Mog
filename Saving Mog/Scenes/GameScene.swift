@@ -134,6 +134,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         mainChara.removeFromParent()
     }
     
+    func rememberEnteredData() {
+        let defaults = UserDefaults.standard
+        let scoreText = String(score!)
+        defaults.set(scoreText, forKey: "highScore")
+        defaults.synchronize()
+    }
+    
+    func gameResultScreen() {
+        self.isPaused = true
+        self.removeAllActions()
+        let reveal = SKTransition.reveal(with: .down, duration: 1)
+        let resultScene = GameResult(size: self.size)
+        resultScene.backgroundColor = UIColor.black
+        resultScene.scaleMode = .aspectFill
+        resultScene.playerScore.text = "Your score is: \(String(score!))"
+        resultScene.addChild(resultScene.playerScore)
+        resultScene.addChild(resultScene.btnReset)
+        resultScene.addChild(resultScene.btnTitle)
+        
+        if (timeLeft == 0) {
+            resultScene.resultMsg.text = "Time is up!"
+        }
+        else{
+            resultScene.resultMsg.text = "You died!"
+        }
+        resultScene.addChild(resultScene.resultMsg)
+        
+        
+        if (score! > Int(UserDefaults.standard.string(forKey: "highScore")!)!)
+        {
+            
+            rememberEnteredData()
+            resultScene.addChild(resultScene.newHighScoreMsg)
+        }
+        resultScene.lblHighScore.text = "High score: \(UserDefaults.standard.string(forKey: "highScore")!)"
+        resultScene.addChild(resultScene.lblHighScore)
+        self.view?.presentScene(resultScene, transition: reveal)
+    }
+    
     func moveMainChara(toPoint pos : CGPoint) {
         let actionMove = SKAction.moveTo(x: pos.x, duration: TimeInterval(0.1))
         sportNode?.run(SKAction.sequence([actionMove]))
