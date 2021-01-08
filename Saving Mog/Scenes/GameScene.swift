@@ -23,6 +23,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var background = SKSpriteNode(imageNamed: "ff.jpg")
     private var sportNode : SKSpriteNode?
     
+    private var score : Int?
+    let scoreIncrement = 10
+    private var lblScore : SKLabelNode?
+    var timeLeft : Int = 60
+    
     override func didMove(to view: SKView) {
         
         background.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2)
@@ -120,9 +125,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         mog.run(SKAction.sequence([actionMove, actionMoveDone]))
     }
     
+    func mainCharaDidCollideWithChara(mainChara : SKSpriteNode, charaCollided: SKSpriteNode) {
+        score = score! + scoreIncrement
+        self.lblScore?.text = "Score: \(score!)"
+        if let slabel = self.lblScore {
+            slabel.run(SKAction.rotate(byAngle: CGFloat(2*Double.pi), duration: 0.4))
+        }
+        mainChara.removeFromParent()
+    }
+    
     func moveMainChara(toPoint pos : CGPoint) {
         let actionMove = SKAction.moveTo(x: pos.x, duration: TimeInterval(0.1))
         sportNode?.run(SKAction.sequence([actionMove]))
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        var firstBody : SKPhysicsBody
+        var secondBody : SKPhysicsBody
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        }
+        else {
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+        
+        if(firstBody.node?.name == "SafeChara" || secondBody.node?.name == "SafeChara") {
+            if((firstBody.categoryBitMask & PhysicsCategory.Cactuar != 0) && (secondBody.categoryBitMask & PhysicsCategory.MainChara != 0)) {
+                mainCharaDidCollideWithChara(mainChara: firstBody.node as! SKSpriteNode, charaCollided: secondBody.node as! SKSpriteNode)
+            }
+        }
+        else {
+            
+            gameResultScreen()
+        }
     }
     
     func touchDown(atPoint pos : CGPoint) {
