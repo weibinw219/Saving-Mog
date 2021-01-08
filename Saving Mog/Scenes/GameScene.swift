@@ -95,6 +95,11 @@ class GameScene: SKScene {
         mog.run(SKAction.sequence([actionMove, actionMoveDone]))
     }
     
+    func moveMainChara(toPoint pos : CGPoint) {
+        let actionMove = SKAction.moveTo(x: pos.x, duration: TimeInterval(0.1))
+        sportNode?.run(SKAction.sequence([actionMove]))
+    }
+    
     func touchDown(atPoint pos : CGPoint) {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
@@ -109,6 +114,7 @@ class GameScene: SKScene {
             n.strokeColor = SKColor.blue
             self.addChild(n)
         }
+        moveMainChara(toPoint: pos)
     }
     
     func touchUp(atPoint pos : CGPoint) {
@@ -117,6 +123,7 @@ class GameScene: SKScene {
             n.strokeColor = SKColor.red
             self.addChild(n)
         }
+        moveMainChara(toPoint: pos)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
