@@ -8,7 +8,15 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+struct PhysicsCategory {
+    static let None : UInt32 = 0
+    static let All : UInt32 = UInt32.max
+    static let Cactuar : UInt32 = 0b1
+    static let Mog : UInt32 = 0b1
+    static let MainChara : UInt32 = 0b10
+}
+
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
@@ -48,6 +56,15 @@ class GameScene: SKScene {
         sportNode?.position = CGPoint(x: 100, y: 100)
         addChild(sportNode!)
         
+        physicsWorld.gravity = CGVector(dx :0, dy: 0)
+        physicsWorld.contactDelegate = self;
+        
+        sportNode?.physicsBody = SKPhysicsBody(circleOfRadius: (sportNode?.size.width)!/2)
+        sportNode?.physicsBody?.isDynamic = true
+        sportNode?.physicsBody?.categoryBitMask = PhysicsCategory.MainChara
+        sportNode?.physicsBody?.contactTestBitMask = PhysicsCategory.Cactuar
+        sportNode?.physicsBody?.collisionBitMask = PhysicsCategory.None
+        sportNode?.physicsBody?.usesPreciseCollisionDetection = true
         
         let counter = 4
         let runAddCactuar = SKAction.run(addCactuar)
@@ -74,7 +91,11 @@ class GameScene: SKScene {
         let actualX = random(min: cactuar.size.width/2, max: size.width - cactuar.size.width/2)
         cactuar.position = CGPoint (x: actualX, y: size.height + cactuar.size.height/2)
         addChild(cactuar)
-
+        cactuar.physicsBody = SKPhysicsBody(rectangleOf: cactuar.size)
+        cactuar.physicsBody?.isDynamic = true;
+        cactuar.physicsBody?.categoryBitMask = PhysicsCategory.Cactuar
+        cactuar.physicsBody?.contactTestBitMask = PhysicsCategory.MainChara
+        cactuar.physicsBody?.collisionBitMask = PhysicsCategory.None
         let actualDuration = random(min: CGFloat(2.0), max: CGFloat(4.0))
         let actionMove = SKAction.move(to: CGPoint(x: actualX, y: -cactuar.size.height/2), duration: TimeInterval (actualDuration))
         let actionMoveDone = SKAction.removeFromParent()
@@ -88,7 +109,11 @@ class GameScene: SKScene {
         let actualX = random(min: mog.size.width/2, max: size.width - mog.size.width/2)
         mog.position = CGPoint (x: actualX, y: size.height + mog.size.height/2)
         addChild(mog)
-
+        mog.physicsBody = SKPhysicsBody(rectangleOf: mog.size)
+        mog.physicsBody?.isDynamic = true;
+        mog.physicsBody?.categoryBitMask = PhysicsCategory.Mog
+        mog.physicsBody?.contactTestBitMask = PhysicsCategory.MainChara
+        mog.physicsBody?.collisionBitMask = PhysicsCategory.None
         let actualDuration = random(min: CGFloat(2.0), max: CGFloat(4.0))
         let actionMove = SKAction.move(to: CGPoint(x: actualX, y: -mog.size.height/2), duration: TimeInterval (actualDuration))
         let actionMoveDone = SKAction.removeFromParent()
