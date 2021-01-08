@@ -48,8 +48,52 @@ class GameScene: SKScene {
         sportNode?.position = CGPoint(x: 100, y: 100)
         addChild(sportNode!)
         
+        
+        let counter = 4
+        let runAddCactuar = SKAction.run(addCactuar)
+        let runAddMog = SKAction.run(addMog)
+        
+        let repeatAddCactuar = SKAction.repeat(SKAction.sequence([runAddCactuar, SKAction.wait(forDuration: 0.5)]), count: counter)
+        
+        
+        run(SKAction.repeatForever(SKAction.sequence([repeatAddCactuar, runAddMog])))
+        
     }
     
+    func random() -> CGFloat {
+        return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
+    }
+    
+    func random(min: CGFloat, max: CGFloat) -> CGFloat {
+        return random() * (max-min) + min
+    }
+    
+    func addCactuar() {
+        let cactuar = SKSpriteNode(imageNamed: "cactuar.png")
+        cactuar.name = "DangerousChara"
+        let actualX = random(min: cactuar.size.width/2, max: size.width - cactuar.size.width/2)
+        cactuar.position = CGPoint (x: actualX, y: size.height + cactuar.size.height/2)
+        addChild(cactuar)
+
+        let actualDuration = random(min: CGFloat(2.0), max: CGFloat(4.0))
+        let actionMove = SKAction.move(to: CGPoint(x: actualX, y: -cactuar.size.height/2), duration: TimeInterval (actualDuration))
+        let actionMoveDone = SKAction.removeFromParent()
+        cactuar.run(SKAction.sequence([actionMove, actionMoveDone]))
+    }
+    
+    func addMog() {
+        let mog = SKSpriteNode(imageNamed: "mog.png")
+
+        mog.name = "SafeChara"
+        let actualX = random(min: mog.size.width/2, max: size.width - mog.size.width/2)
+        mog.position = CGPoint (x: actualX, y: size.height + mog.size.height/2)
+        addChild(mog)
+
+        let actualDuration = random(min: CGFloat(2.0), max: CGFloat(4.0))
+        let actionMove = SKAction.move(to: CGPoint(x: actualX, y: -mog.size.height/2), duration: TimeInterval (actualDuration))
+        let actionMoveDone = SKAction.removeFromParent()
+        mog.run(SKAction.sequence([actionMove, actionMoveDone]))
+    }
     
     func touchDown(atPoint pos : CGPoint) {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
